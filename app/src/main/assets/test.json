@@ -1,0 +1,64 @@
+{  
+   "type":"FeatureCollection",
+   "features":[  
+      {  
+         "type":"Feature",
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               5.662009,
+               45.538517
+            ]
+         },
+         "properties":{  
+            "apercu":"https://cibul.s3.amazonaws.com/evtbevent_imagerie-medicale-l-aventure-interieure_267_618035.jpg",
+            "description_longue_fr":"Explorer l'int\u00e9rieur du corps humain sans l'ouvrir et sans douleur, c'est ce que permettent les techniques modernes d'imagerie m\u00e9dicale. Votre corps comme vous ne l'aviez jamais vu !\n\nDurant un circuit d'une heure, le Centre Hospitalier Yves Touraine de Pont-de-Beauvoisin vous propose de d\u00e9couvrir les coulisses de son service d'imagerie m\u00e9dicale : scanner, IRM, fonctionnement, d\u00e9monstration, apports, r\u00e9sultats... Cette manifestation sera \u00e9galement l'occasion de discuter avec des professionnels de sant\u00e9 dans le cadre de leur travail.\n\n[https://youtu.be/JMS2mOkwSqc](https://youtu.be/JMS2mOkwSqc)",
+            "selection":"Auvergne-Rh\u00f4ne-Alpes>Is\u00e8re>Le Pont-de-Beauvoisin",
+            "tranche":"-",
+            "animateurs":"Les professionnels du service imagerie m\u00e9dicale",
+            "ville":"Le Pont-de-Beauvoisin",
+            "pays":"France (M\u00e9tropole)",
+            "identifiant_du_lieu":"92923927",
+            "organisateur":"Centre Hospitalier Yves Touraine",
+            "titre_fr":"Imagerie m\u00e9dicale : l\u2019aventure int\u00e9rieure",
+            "resume_dates_fr":"vendredi 12 octobre - 13h00 \u00e0 18h00",
+            "agenda_d_origine_uid":"11177035",
+            "resume_horaires_fr":"Vendredi 12 octobre, 13h00",
+            "description_fr":"Durant un circuit d'une heure, le CHYT vous propose de d\u00e9couvrir les coulisses de son service d\u2019imagerie. Votre corps comme vous ne l'aviez jamais vu !",
+            "cr":"eventsR84_18",
+            "referentscientifique":"Les pr\u00e9sentations sont r\u00e9alis\u00e9es par des professionnels de sant\u00e9 dipl\u00f4m\u00e9s et exp\u00e9riment\u00e9s.",
+            "lien_d_inscription":"chpb-sec.imagerie@ghnd.fr, 0476326462",
+            "public_specifique":"Scolaires",
+            "type_d_animation":"[Ev\u00e8nement ponctuel] Visite",
+            "identifiant":"19205498",
+            "horaires_iso":"2018-10-12T13:00:00+02:00-2018-10-12T18:00:00+02:00",
+            "derniere_mise_a_jour":"2018-07-17T16:16:46+02:00",
+            "description_longue_html_fr":"<p>Explorer l&#39;int\u00e9rieur du corps humain sans l&#39;ouvrir et sans douleur, c&#39;est ce que permettent les techniques modernes d&#39;imagerie m\u00e9dicale. Votre corps comme vous ne l&#39;aviez jamais vu !</p>\n<p>Durant un circuit d&#39;une heure, le Centre Hospitalier Yves Touraine de Pont-de-Beauvoisin vous propose de d\u00e9couvrir les coulisses de son service d&#39;imagerie m\u00e9dicale : scanner, IRM, fonctionnement, d\u00e9monstration, apports, r\u00e9sultats... Cette manifestation sera \u00e9galement l&#39;occasion de discuter avec des professionnels de sant\u00e9 dans le cadre de leur travail.</p>\n<p><div style=\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;\"><iframe src=\"https://www.youtube.com/embed/JMS2mOkwSqc?rel=0&amp;showinfo=0\" style=\"border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;\" allowfullscreen scrolling=\"no\"></iframe></div></p>",
+            "publics_concernes":"Coll\u00e8ge (11 - 14 ans)|Lyc\u00e9e (15 - 16 ans)|Etudiants (18 - 25 ans)|Familles|Seniors",
+            "credits_image":"GHND",
+            "horaires_detailles_fr":"vendredi 12 octobre - 13h00 \u00e0 18h00",
+            "image":"https://cibul.s3.amazonaws.com/event_imagerie-medicale-l-aventure-interieure_267_618035.jpg",
+            "nb_evenements":"2",
+            "reconduction":"\u00c9v\u00e9nement reconduit",
+            "thematiques":"Sciences de la vie et de la sant\u00e9|Sciences exactes (maths, physique, chimie)|Sciences de l'ing\u00e9nieur",
+            "image_source":"https://cibul.s3.amazonaws.com/evfevent_imagerie-medicale-l-aventure-interieure_267_618035.jpg",
+            "statut":"publi\u00e9",
+            "lien":"https://openagenda.com/fetedelascience2018_aura/events/imagerie-medicale-l-aventure-interieure_267",
+            "lien_canonique":"https://www.fetedelascience.fr/pid35201/fiche-evenement.html?identifiant=19205498",
+            "adresse":"Rue du Thomassin 38480 Pont-de-Beauvoisin. - Le Pont-de-Beauvoisin",
+            "departement":"Is\u00e8re",
+            "dates":"2018-10-12",
+            "code_postal":"38480",
+            "nom_du_lieu":"Centre Hospitalier Yves Touraine",
+            "region":"Auvergne-Rh\u00f4ne-Alpes",
+            "inscription_necessaire":"Oui",
+            "detail_des_conditions_fr":"Inscription obligatoire",
+            "geolocalisation":[  
+               45.538517,
+               5.662009
+            ],
+            "agenda_d_origine_titre":"F\u00eate de la Science 2018 - Aura"
+         }
+      }
+   ]
+}
