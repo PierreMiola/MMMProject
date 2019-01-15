@@ -6,13 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,12 +27,15 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    @BindView(R.id.filtre)
+    Button btnFiltre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,8 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this,LoginActivity.class));
 
         }
-
-
         return true;
+    }
+
+    public void redirectFilter(View view) {
+        startActivity(new Intent(MainActivity.this, FiltreActivity.class));
+    }
+
+    public void redirectMap(View view) {
+        startActivity(new Intent(MainActivity.this, CarteActivity.class));
     }
 }

@@ -7,8 +7,9 @@ public class Event {
     private String titre;
     //ajouter les autres info plus tard
 
-    public Event(String iu, String t){
-        this.image_url=iu;
+    public Event(String ui, String v, String t){
+        this.image_url=ui;
+        this.ville=v;
         this.titre=t;
     }
 
