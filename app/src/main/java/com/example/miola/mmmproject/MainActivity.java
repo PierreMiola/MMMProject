@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
-
+            break;
+            case R.id.parcours:
+                startActivity(new Intent(this,NoteActivity.class));
+            break;
         }
 
 
