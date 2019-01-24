@@ -1,17 +1,31 @@
 package com.example.miola.mmmproject;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable {
     private String image_url;
+    private String titre;
     private String description;
     private String ville;
-    private String titre;
-    //ajouter les autres info plus tard
+    private String region;
+    private String mots_cles;
+    private String date;
+    private String telephone;
 
-    public Event(String ui, String v, String t){
-        this.image_url=ui;
-        this.ville=v;
-        this.titre=t;
+
+    public Event(String image, String titre, String description, String ville, String region, String mots_cles, String date,
+                 String telephone){
+        this.image_url = image;
+        this.titre = titre;
+        this.description = description;
+        this.ville = ville;
+        this.region = region;
+        this.mots_cles = mots_cles;
+        this.date = date;
+
+        this.telephone = telephone;
     }
+
 
     public String getImage_url() {
         return image_url;
@@ -44,4 +58,21 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getRegion() { return region; }
+
+    public void setRegion(String region) { this.region = region; }
+
+    public String getMots_cles() { return mots_cles; }
+
+    public void setMots_cles(String mots_cles) { this.mots_cles = mots_cles; }
+
+    public String getDate() { return date; }
+
+    public void setDate(String date) { this.date = date; }
+
+    public String getTelephone() { return telephone; }
+
+    public void setTelephone(String telephone) { this.telephone = telephone; }
+
 }

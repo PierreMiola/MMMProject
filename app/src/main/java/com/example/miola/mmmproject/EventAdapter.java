@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
@@ -22,6 +23,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
     public static final String KEY_titre = "titre";*/
 
     private List<Event> eventList;
+    private static OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void OnItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     public EventAdapter(List<Event> el){
         this.eventList=el;
@@ -41,13 +51,20 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Picasso.get().load(eventList.get(i).getImage_url()).resize(200, 200).into(viewHolder.image);
+        if(eventList.get(i).getImage_url().isEmpty()){
+            Picasso.get().load("/home/amine/AndroidStudioProjects/MMMProject/app/src/main/assets/evenement.jpeg").resize(200, 200).into(viewHolder.image);
+        }else {
+            Picasso.get().load(eventList.get(i).getImage_url()).resize(200, 200).into(viewHolder.image);
+        }
         if(eventList.get(i).getTitre().length() > 25){
             viewHolder.titre.setText(eventList.get(i).getTitre().substring(0, 25)+"...");
         }else{
             viewHolder.titre.setText(eventList.get(i).getTitre());
         }
         viewHolder.ville.setText(eventList.get(i).getVille());
+
+
+
     }
 
     @Override
@@ -66,6 +83,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
             image = itemView.findViewById(R.id.imageEvent);
             ville = itemView.findViewById(R.id.villeEvent);
             titre = itemView.findViewById(R.id.titleEvent);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null){
+                            int position = getAdapterPosition();
+                            if(position != RecyclerView.NO_POSITION){
+                                mListener.OnItemClick(position);
+                            }
+                    }
+                }
+            });
         }
     }
+
+    public void updateList(List<Event> newList){
+        eventList = new ArrayList<>();
+        eventList.addAll(newList);
+        notifyDataSetChanged();
+    }
+
 }
