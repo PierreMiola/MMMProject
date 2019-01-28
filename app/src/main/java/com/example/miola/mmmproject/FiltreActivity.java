@@ -10,9 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.LogPrinter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -36,6 +38,7 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
     List<Event> eventListTest;
 
     private EventAdapter eventAdapter;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,11 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        eventListTest = new ArrayList<>();
+        Intent intent = getIntent();
+        email = (String) intent.getSerializableExtra("EMAIL");
 
+        eventListTest = new ArrayList<>();
+        int id = 1;
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset(this.getApplicationContext()));
             JSONArray arr = obj.getJSONArray("features");
@@ -57,6 +63,7 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
                 JSONObject jo = arr.getJSONObject(i);
                 //Log.i("titre : ", jo.getJSONObject("properties").get("titre_fr").toString());
                     eventListTest.add(new Event(
+                            id,
                             jo.getJSONObject("properties").optString("image"),
                             jo.getJSONObject("properties").get("titre_fr").toString(),
                             jo.getJSONObject("properties").get("description_fr").toString(),
@@ -64,7 +71,9 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
                             jo.getJSONObject("properties").get("region").toString(),
                             jo.getJSONObject("properties").optString("mots_cles_fr"),
                             jo.getJSONObject("properties").get("dates").toString(),
-                            jo.getJSONObject("properties").optString("telephone_du_lieu").toString()));
+                            jo.getJSONObject("properties").optString("telephone_du_lieu"),
+                            jo.getJSONObject("properties").optString("thematiques")));
+                    id++;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -113,9 +122,6 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
-            case R.id.parcours:
-                startActivity(new Intent(this,NoteActivity.class));
-                break;
         }
         return true;
     }
@@ -145,9 +151,11 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
                 } catch (ParseException ex) {
                     // Handle Exception.
                 }
+
                 if(event.getTitre().toLowerCase().contains(userInput) || event.getVille().toLowerCase().contains(userInput)
                         || event.getRegion().toLowerCase().contains(userInput) || event.getDate().contains(userInput)
-                        || event.getMots_cles().toLowerCase().contains(userInput)){
+                        || event.getMots_cles().toLowerCase().contains(userInput)
+                        || event.getThematique().contains(userInput)){
                     newList.add(event);
                 }
 
@@ -162,6 +170,7 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
         Intent intent = new Intent(this, EvenementActivity.class);
         Event event = eventListTest.get(position);
         intent.putExtra("MyClass",event);
+        intent.putExtra("EMAIL", email);
         startActivity(intent);
     }
 }

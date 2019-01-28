@@ -1,8 +1,11 @@
 package com.example.miola.mmmproject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Event implements Serializable {
+
+    private int id;
     private String image_url;
     private String titre;
     private String description;
@@ -11,10 +14,12 @@ public class Event implements Serializable {
     private String mots_cles;
     private String date;
     private String telephone;
+    private String thematique;
 
 
-    public Event(String image, String titre, String description, String ville, String region, String mots_cles, String date,
-                 String telephone){
+    public Event(int id, String image, String titre, String description, String ville, String region, String mots_cles, String date,
+                 String telephone, String thematique){
+        this.id = id;
         this.image_url = image;
         this.titre = titre;
         this.description = description;
@@ -22,10 +27,13 @@ public class Event implements Serializable {
         this.region = region;
         this.mots_cles = mots_cles;
         this.date = date;
-
         this.telephone = telephone;
+        this.thematique = thematique;
     }
 
+    public int getId() { return id;}
+
+    public void setId(int id) { this.id = id; }
 
     public String getImage_url() {
         return image_url;
@@ -74,5 +82,10 @@ public class Event implements Serializable {
     public String getTelephone() { return telephone; }
 
     public void setTelephone(String telephone) { this.telephone = telephone; }
+
+    public String getThematique() { return thematique; }
+
+    public void setThematique(String thematique) { this.thematique = thematique; }
+
 
 }

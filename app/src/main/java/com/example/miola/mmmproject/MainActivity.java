@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.filtre)
     Button btnFiltre;
 
+    private String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        email = (String) intent.getSerializableExtra("EMAIL");
+
 
 
     }
@@ -58,15 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
             break;
-            case R.id.parcours:
-                startActivity(new Intent(this,NoteActivity.class));
-            break;
         }
         return true;
     }
 
     public void redirectFilter(View view) {
-        startActivity(new Intent(MainActivity.this, FiltreActivity.class));
+        Intent intent = new Intent(MainActivity.this, FiltreActivity.class);
+        intent.putExtra("EMAIL", email);
+        startActivity(intent);
     }
 
     public void redirectMap(View view) {

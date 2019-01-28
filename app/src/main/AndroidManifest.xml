@@ -12,15 +12,14 @@
         android:supportsRtl="true"
         android:name=".FireApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".NoteActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".CarteActivity"/>
         <activity android:name=".EvenementActivity"/>
         <activity android:name=".FiltreActivity"/>
