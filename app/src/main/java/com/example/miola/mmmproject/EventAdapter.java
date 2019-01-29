@@ -2,11 +2,14 @@ package com.example.miola.mmmproject;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +20,12 @@ import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
 
-    /*public static final String KEY_image = "image";
-    public static final String KEY_description = "description";
-    public static final String KEY_ville = "ville";
-    public static final String KEY_titre = "titre";*/
+
 
     private List<Event> eventList;
     private static OnItemClickListener mListener;
+    private FiltreActivity filtreActivity;
+    private Context context;
 
     public interface OnItemClickListener{
         void OnItemClick(int position);
@@ -33,8 +35,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
         mListener = listener;
     }
 
-    public EventAdapter(List<Event> el){
-        this.eventList=el;
+    public EventAdapter(List<Event> el, Context cnx){
+        this.eventList = el;
+        this.context = cnx;
+        this.filtreActivity = (FiltreActivity) cnx;
     }
 
     @Override
@@ -45,9 +49,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+        ViewHolder vh = new ViewHolder(v, filtreActivity);
         return vh;
     }
+
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
@@ -63,8 +68,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
         }
         viewHolder.ville.setText(eventList.get(i).getVille());
 
-
-
+        if(!filtreActivity.is_in_action_mode){
+            viewHolder.checkBox.setVisibility(View.GONE);
+        }else{
+            viewHolder.checkBox.setVisibility(View.VISIBLE);
+            viewHolder.checkBox.setChecked(false);
+        }
     }
 
     @Override
@@ -72,17 +81,24 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         private ImageView image;
-        //private String description;
         public TextView ville;
         public TextView titre;
+        public CheckBox checkBox;
+        FiltreActivity filtreActivity;
+        CardView cardView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, FiltreActivity filtreActivity) {
             super(itemView);
             image = itemView.findViewById(R.id.imageEvent);
             ville = itemView.findViewById(R.id.villeEvent);
             titre = itemView.findViewById(R.id.titleEvent);
+            checkBox = itemView.findViewById(R.id.checkList);
+            this.filtreActivity = filtreActivity;
+            cardView = itemView.findViewById(R.id.cardView);
+            cardView.setOnLongClickListener(filtreActivity);
+            checkBox.setOnClickListener(this);
 
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -95,6 +111,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
                     }
                 }
             });
+
+        }
+
+
+
+        @Override
+        public void onClick(View v) {
+            filtreActivity.prepareSelection(v, getAdapterPosition());
         }
     }
 
@@ -103,5 +127,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
         eventList.addAll(newList);
         notifyDataSetChanged();
     }
+
 
 }

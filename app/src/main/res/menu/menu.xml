@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/mesParcours"
+        android:title="mes parcours"
+        />
+
+    <item
         android:id="@+id/menuLogout"
         android:title="Logout"
      />

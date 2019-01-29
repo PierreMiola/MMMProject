@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private String email;
+    private String[] splitArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         email = (String) intent.getSerializableExtra("EMAIL");
+        splitArray = email.split("@");
+        email = splitArray[0];
+
         if (isServicesOK()) {
             redirectMap();
         }
@@ -70,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuLogout:
                 FirebaseAuth.getInstance().signOut();
                 finish();
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this,LoginActivity.class));
+            break;
+            case R.id.mesParcours:
+                Intent intent = new Intent(MainActivity.this, MesParcoursActivity.class);
+                intent.putExtra("EMAIL", email);
+                startActivity(intent);
                 break;
         }
         return true;
