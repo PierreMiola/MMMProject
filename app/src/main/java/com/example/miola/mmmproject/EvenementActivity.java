@@ -77,7 +77,7 @@ public class EvenementActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mNote);
         notesList.setAdapter(arrayAdapter);
 
-
+        imageCall.setVisibility(View.GONE);
 
         Picasso.get().load(event.getImage_url()).fit().centerInside().into(imageView);
         tvTitre.setText("Titre : " + event.getTitre());
@@ -85,7 +85,10 @@ public class EvenementActivity extends AppCompatActivity {
         tvVille.setText("Ville : " + event.getVille());
         tvRegion.setText("Region : " + event.getRegion());
         tvDate.setText("Dates : " + event.getDate());
-        tvTelephone.setText("Téléphone : " + event.getTelephone());
+        if(!event.getTelephone().isEmpty()){
+            tvTelephone.setText("Téléphone : " + event.getTelephone());
+            imageCall.setVisibility(View.VISIBLE);
+        }
         tvThematique.setText("Thématique : " + event.getThematique());
 
         imageCall.setOnClickListener(new View.OnClickListener(){
@@ -188,7 +191,6 @@ public class EvenementActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
-
         inflater.inflate(R.menu.menu, menu);
         inflater.inflate(R.menu.share, menu);
 
@@ -210,26 +212,6 @@ public class EvenementActivity extends AppCompatActivity {
                 in.putExtra(Intent.EXTRA_SUBJECT, event.getTitre());
                 in.putExtra(Intent.EXTRA_TEXT, event.getDescription());
                 startActivity(Intent.createChooser(in, "Share using"));
-            case R.id.tauxRemplissage:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-                final EditText et = new EditText(this);
-
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(et);
-
-                // set dialog message
-                alertDialogBuilder.setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        event.setTauxRemplissage(et.getText().toString());
-                    }
-                });
-
-                Log.i("taux", et.getText().toString());
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                // show it
-                alertDialog.show();
                 break;
         }
         return true;
