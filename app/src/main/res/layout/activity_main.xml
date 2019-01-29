@@ -22,7 +22,7 @@
         android:layout_marginBottom="100dp"
         android:text="Filtre"
         android:onClick="redirectFilter"
-        app:layout_constraintBottom_toTopOf="@+id/carte"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,12 +31,13 @@
 
 
     <Button
-        android:id="@+id/carte"
+
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginBottom="172dp"
         android:text="Carte"
-        android:onClick="redirectMap"
+        android:id="@+id/btnMap"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
