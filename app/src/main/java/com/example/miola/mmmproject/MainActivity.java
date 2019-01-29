@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
             break;
+
         }
         return true;
     }

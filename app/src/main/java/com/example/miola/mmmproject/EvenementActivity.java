@@ -67,11 +67,9 @@ public class EvenementActivity extends AppCompatActivity {
         TextView tvVille = findViewById(R.id.ville);
         TextView tvRegion = findViewById(R.id.region);
         TextView tvDate = findViewById(R.id.date);
-        TextView tvTelephone = findViewById(R.id.motsCles);
+        TextView tvTelephone = findViewById(R.id.telephone);
         ImageView imageCall = findViewById(R.id.image_call);
-        TextView tvMotscles = findViewById(R.id.motsCles);
         TextView tvThematique = findViewById(R.id.thematique);
-        Button share = findViewById(R.id.share);
         RatingBar rbStar = findViewById(R.id.ratingBar);
         Button save = findViewById(R.id.save);
         ListView notesList = findViewById(R.id.listNotes);
@@ -86,7 +84,6 @@ public class EvenementActivity extends AppCompatActivity {
         tvDescription.setText("Description : " + event.getDescription());
         tvVille.setText("Ville : " + event.getVille());
         tvRegion.setText("Region : " + event.getRegion());
-        tvMotscles.setText("Mots clés : " + event.getMots_cles());
         tvDate.setText("Dates : " + event.getDate());
         tvTelephone.setText("Téléphone : " + event.getTelephone());
         tvThematique.setText("Thématique : " + event.getThematique());
@@ -99,16 +96,6 @@ public class EvenementActivity extends AppCompatActivity {
         });
 
         // Méthode pour le partage des évènements par email ou sur les réseaux sociaux
-        share.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, event.getTitre());
-                intent.putExtra(Intent.EXTRA_TEXT, event.getDescription());
-                startActivity(Intent.createChooser(intent, "Share using"));
-            }
-        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,11 +188,9 @@ public class EvenementActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
-        if(email.equals("anass")){
-            inflater.inflate(R.menu.tauxremplissage, menu);
-        }
-        inflater.inflate(R.menu.filter, menu);
+
         inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.share, menu);
 
 
         return true;
@@ -219,6 +204,12 @@ public class EvenementActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
+            case R.id.share:
+                Intent in = new Intent(Intent.ACTION_SEND);
+                in.setType("text/plain");
+                in.putExtra(Intent.EXTRA_SUBJECT, event.getTitre());
+                in.putExtra(Intent.EXTRA_TEXT, event.getDescription());
+                startActivity(Intent.createChooser(in, "Share using"));
             case R.id.tauxRemplissage:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
