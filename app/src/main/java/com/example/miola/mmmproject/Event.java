@@ -1,7 +1,6 @@
 package com.example.miola.mmmproject;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Event implements Serializable {
 
@@ -15,10 +14,13 @@ public class Event implements Serializable {
     private String date;
     private String telephone;
     private String thematique;
-
+    private String latitude;
+    private String longitude;
+    private String organisateur;
+    private String tauxRemplissage;
 
     public Event(int id, String image, String titre, String description, String ville, String region, String mots_cles, String date,
-                 String telephone, String thematique){
+                 String telephone, String thematique, String latitude, String longitude){
         this.id = id;
         this.image_url = image;
         this.titre = titre;
@@ -29,6 +31,10 @@ public class Event implements Serializable {
         this.date = date;
         this.telephone = telephone;
         this.thematique = thematique;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.organisateur = null;
+        this.tauxRemplissage = null;
     }
 
     public int getId() { return id;}
@@ -87,5 +93,19 @@ public class Event implements Serializable {
 
     public void setThematique(String thematique) { this.thematique = thematique; }
 
+    public String getLatitude() { return latitude; }
 
+    public void setLatitude(String latitude) { this.latitude = latitude; }
+
+    public String getLongitude() { return longitude; }
+
+    public void setLongitude(String longitude) { this.longitude = longitude; }
+
+    public String getOrganisateur() { return organisateur; }
+
+    public void setOrganisateur(String organisateur) { this.organisateur = organisateur; }
+
+    public String getTauxRemplissage() { return tauxRemplissage; }
+
+    public void setTauxRemplissage(String tauxRemplissage) { this.tauxRemplissage = tauxRemplissage; }
 }

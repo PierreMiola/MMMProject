@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnFiltre;
 
     private String email;
+    private String[] splitArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         email = (String) intent.getSerializableExtra("EMAIL");
+        splitArray = email.split("@");
+        email = splitArray[0];
 
 
 
@@ -64,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
             break;
+            case R.id.mesParcours:
+                Intent intent = new Intent(MainActivity.this, MesParcoursActivity.class);
+                intent.putExtra("EMAIL", email);
+                startActivity(intent);
+                break;
         }
         return true;
     }

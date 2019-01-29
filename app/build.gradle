@@ -1,4 +1,4 @@
-                                        apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
@@ -36,6 +36,8 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.jakewharton:butterknife:9.0.0-rc2'
     implementation 'com.amitshekhar.android:android-networking:1.0.1'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-selection:28.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
     implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.12'
