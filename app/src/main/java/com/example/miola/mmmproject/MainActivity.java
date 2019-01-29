@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+
         return true;
     }
 
@@ -76,11 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
             break;
-            case R.id.mesParcours:
-                Intent intent = new Intent(MainActivity.this, MesParcoursActivity.class);
-                intent.putExtra("EMAIL", email);
-                startActivity(intent);
-                break;
         }
         return true;
     }

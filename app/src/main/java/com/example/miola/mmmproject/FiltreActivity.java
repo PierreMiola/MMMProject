@@ -159,11 +159,7 @@ public class FiltreActivity extends AppCompatActivity implements SearchView.OnQu
                 clearActionMode();
                 eventAdapter.notifyDataSetChanged();
                 break;
-            case R.id.mesParcours:
-                Intent intent = new Intent(FiltreActivity.this, MesParcoursActivity.class);
-                intent.putExtra("EMAIL", surnom);
-                startActivity(intent);
-                break;
+
         }
         return true;
     }

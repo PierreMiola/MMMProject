@@ -51,14 +51,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonFeature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonPoint;
+import com.google.maps.android.data.geojson.GeoJsonPointStyle;
 
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CarteActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener {
@@ -118,7 +117,7 @@ public class CarteActivity extends AppCompatActivity implements OnMapReadyCallba
     private GoogleApiClient mGoogleApiClient;
     private PlaceInfo mPlace;
     private Marker mMarker;
-    //private Marker mPerth;
+
 
 
 
@@ -136,15 +135,16 @@ public class CarteActivity extends AppCompatActivity implements OnMapReadyCallba
 
 
     }
-
     private void retrieveFileFromResource() {
         try {
             GeoJsonLayer layer = new GeoJsonLayer(mMap, R.raw.fete, getApplicationContext());
             layer.addLayerToMap();
-            layer.setOnFeatureClickListener((GeoJsonLayer.GeoJsonOnFeatureClickListener) feature -> Toast.makeText(CarteActivity.this,
-                    "Feature clicked: " + feature.getProperty("Titre"),
-                    Toast.LENGTH_SHORT).show());
 
+            for (GeoJsonFeature feature : layer.getFeatures()) {  //loop through features
+                GeoJsonPointStyle pointStyle = new GeoJsonPointStyle();
+                pointStyle.setTitle(feature.getProperty("titre_fr"));
+                feature.setPointStyle(pointStyle);
+            }
 
         } catch (IOException e) {
             Log.d(TAG, "retrieveFileFromResource: GeoJSON file could not be read");
@@ -152,9 +152,6 @@ public class CarteActivity extends AppCompatActivity implements OnMapReadyCallba
             Log.d(TAG, "retrieveFileFromResource: GeoJSON file could not be converted to a JSONObject");
 
         }
-
-
-
 
     }
 

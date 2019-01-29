@@ -219,11 +219,6 @@ public class EvenementActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
-            case R.id.mesParcours:
-                Intent intent = new Intent(this, MesParcoursActivity.class);
-                intent.putExtra("EMAIL", email);
-                startActivity(intent);
-                break;
             case R.id.tauxRemplissage:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
