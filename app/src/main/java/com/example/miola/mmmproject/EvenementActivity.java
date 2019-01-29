@@ -67,11 +67,9 @@ public class EvenementActivity extends AppCompatActivity {
         TextView tvVille = findViewById(R.id.ville);
         TextView tvRegion = findViewById(R.id.region);
         TextView tvDate = findViewById(R.id.date);
-        TextView tvTelephone = findViewById(R.id.motsCles);
+        TextView tvTelephone = findViewById(R.id.telephone);
         ImageView imageCall = findViewById(R.id.image_call);
-        TextView tvMotscles = findViewById(R.id.motsCles);
         TextView tvThematique = findViewById(R.id.thematique);
-        Button share = findViewById(R.id.share);
         RatingBar rbStar = findViewById(R.id.ratingBar);
         Button save = findViewById(R.id.save);
         ListView notesList = findViewById(R.id.listNotes);
@@ -79,16 +77,18 @@ public class EvenementActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mNote);
         notesList.setAdapter(arrayAdapter);
 
-
+        imageCall.setVisibility(View.GONE);
 
         Picasso.get().load(event.getImage_url()).fit().centerInside().into(imageView);
         tvTitre.setText("Titre : " + event.getTitre());
         tvDescription.setText("Description : " + event.getDescription());
         tvVille.setText("Ville : " + event.getVille());
         tvRegion.setText("Region : " + event.getRegion());
-        tvMotscles.setText("Mots clés : " + event.getMots_cles());
         tvDate.setText("Dates : " + event.getDate());
-        tvTelephone.setText("Téléphone : " + event.getTelephone());
+        if(!event.getTelephone().isEmpty()){
+            tvTelephone.setText("Téléphone : " + event.getTelephone());
+            imageCall.setVisibility(View.VISIBLE);
+        }
         tvThematique.setText("Thématique : " + event.getThematique());
 
         imageCall.setOnClickListener(new View.OnClickListener(){
@@ -99,16 +99,6 @@ public class EvenementActivity extends AppCompatActivity {
         });
 
         // Méthode pour le partage des évènements par email ou sur les réseaux sociaux
-        share.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, event.getTitre());
-                intent.putExtra(Intent.EXTRA_TEXT, event.getDescription());
-                startActivity(Intent.createChooser(intent, "Share using"));
-            }
-        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,8 +194,8 @@ public class EvenementActivity extends AppCompatActivity {
         if(email.equals("anass")){
             inflater.inflate(R.menu.tauxremplissage, menu);
         }
-        inflater.inflate(R.menu.filter, menu);
         inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.share, menu);
 
 
         return true;
@@ -244,6 +234,13 @@ public class EvenementActivity extends AppCompatActivity {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 // show it
                 alertDialog.show();
+                break;
+            case R.id.share:
+                Intent in = new Intent(Intent.ACTION_SEND);
+                in.setType("text/plain");
+                in.putExtra(Intent.EXTRA_SUBJECT, event.getTitre());
+                in.putExtra(Intent.EXTRA_TEXT, event.getDescription());
+                startActivity(Intent.createChooser(in, "Share using"));
                 break;
         }
         return true;
